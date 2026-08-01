@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎒 Thi Thử Toán Lớp 1 - Thầy Cô & Con Yêu!</title>
+  <meta name="description" content="Ứng dụng thi thử Toán dành cho học sinh lớp 1. Luyện tập các dạng bài trắc nghiệm và tự luận theo tuần." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== CONFETTI CANVAS ===== -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- ===== FLOATING STARS BACKGROUND ===== -->
+  <div class="bg-stars" id="bg-stars"></div>
+
+  <!-- ==================== SCREEN: HOME ==================== -->
+  <div id="screen-home" class="screen active">
+    <div class="home-container">
+      <!-- Header -->
+      <div class="home-header">
+        <div class="home-mascot">🦊</div>
+        <h1 class="home-title">Thi Thử Toán<br/><span>Lớp 1 ✨</span></h1>
+        <p class="home-subtitle">Chọn tuần học để bắt đầu làm bài nhé!</p>
+      </div>
+
+      <!-- Week list -->
+      <div class="week-grid" id="week-grid">
+        <!-- Tuần 1 -->
+        <button class="week-card" id="btn-week-1" onclick="startExam(1)">
+          <div class="week-card-icon">📚</div>
+          <div class="week-card-title">Tuần 1</div>
+          <div class="week-card-subtitle">So sánh & Tính toán</div>
+          <div class="week-card-badge">12 câu</div>
+        </button>
+
+        <!-- Tuần 2 (khóa) -->
+        <button class="week-card locked" id="btn-week-2" disabled>
+          <div class="week-card-icon">🔒</div>
+          <div class="week-card-title">Tuần 2</div>
+          <div class="week-card-subtitle">Sắp tới...</div>
+          <div class="week-card-badge coming">Chưa mở</div>
+        </button>
+
+        <!-- Tuần 3 (khóa) -->
+        <button class="week-card locked" id="btn-week-3" disabled>
+          <div class="week-card-icon">🔒</div>
+          <div class="week-card-title">Tuần 3</div>
+          <div class="week-card-subtitle">Sắp tới...</div>
+          <div class="week-card-badge coming">Chưa mở</div>
+        </button>
+
+        <!-- Tuần 4 (khóa) -->
+        <button class="week-card locked" id="btn-week-4" disabled>
+          <div class="week-card-icon">🔒</div>
+          <div class="week-card-title">Tuần 4</div>
+          <div class="week-card-subtitle">Sắp tới...</div>
+          <div class="week-card-badge coming">Chưa mở</div>
+        </button>
+      </div>
+
+      <!-- Footer decoration -->
+      <div class="home-footer-deco">
+        <span>⭐</span><span>🌈</span><span>🎉</span><span>🌟</span><span>🎈</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SCREEN: EXAM ==================== -->
+  <div id="screen-exam" class="screen">
+    <!-- Top bar -->
+    <div class="exam-topbar">
+      <button class="btn-back" id="btn-back-home" onclick="backToHome()">⬅ Về Trang Chủ</button>
+      <div class="exam-title-bar" id="exam-title-bar">📝 Tuần 1</div>
+      <div class="exam-progress-wrap">
+        <div class="exam-progress-bar" id="exam-progress-bar"></div>
+      </div>
+    </div>
+
+    <!-- Student name input -->
+    <div class="student-name-box" id="student-name-box">
+      <label for="student-name">👦 Họ và Tên em:</label>
+      <input type="text" id="student-name" placeholder="Gõ tên của em vào đây..." maxlength="50" />
+    </div>
+
+    <!-- Questions container -->
+    <div class="exam-body" id="exam-body">
+      <!-- Dynamically generated -->
+    </div>
+
+    <!-- Submit button -->
+    <div class="submit-wrap">
+      <button class="btn-submit" id="btn-submit" onclick="submitExam()">
+        🏁 Nộp Bài!
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== SCREEN: RESULT ==================== -->
+  <div id="screen-result" class="screen">
+    <div class="result-container">
+      <!-- Result header -->
+      <div class="result-header" id="result-header">
+        <div class="result-emoji" id="result-emoji">🏆</div>
+        <div class="result-student-name" id="result-student-name">Bạn Học Sinh</div>
+        <div class="result-message" id="result-message">Xuất sắc!</div>
+      </div>
+
+      <!-- Score card -->
+      <div class="score-card">
+        <div class="score-circle" id="score-circle">
+          <div class="score-number" id="score-number">10</div>
+          <div class="score-label">điểm</div>
+        </div>
+        <div class="score-details">
+          <div class="score-detail-item correct">
+            <span class="detail-icon">✅</span>
+            <span class="detail-label">Câu đúng:</span>
+            <span class="detail-val" id="correct-count">0</span>
+          </div>
+          <div class="score-detail-item wrong">
+            <span class="detail-icon">❌</span>
+            <span class="detail-label">Câu sai:</span>
+            <span class="detail-val" id="wrong-count">0</span>
+          </div>
+          <div class="score-detail-item total">
+            <span class="detail-icon">📋</span>
+            <span class="detail-label">Tổng số:</span>
+            <span class="detail-val" id="total-count">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Answer review -->
+      <div class="review-section">
+        <h2 class="review-title">📖 Xem lại đáp án</h2>
+        <div class="review-list" id="review-list">
+          <!-- Dynamically generated -->
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="result-buttons">
+        <button class="btn-retry" id="btn-retry" onclick="retryExam()">🔄 Làm Lại</button>
+        <button class="btn-home" id="btn-home" onclick="backToHome()">🏠 Trang Chủ</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
