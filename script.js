@@ -277,20 +277,24 @@ function renderExam(exam) {
 
 /* ---- MCQ card ---- */
 function renderMCQ(q, num) {
+  function escapeHTML(str) {
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
   const card = document.createElement("div");
   card.className = "question-card";
 
   const labels = ["a", "b", "c", "d"];
   const optionHTML = q.options.map((opt, i) => `
     <label class="option-label" for="${q.id}_opt${i}">
-      <input type="radio" id="${q.id}_opt${i}" name="${q.id}" value="${opt}" />
-      <span class="option-text"><strong>${labels[i]}.</strong> ${opt}</span>
+      <input type="radio" id="${q.id}_opt${i}" name="${q.id}" value="${escapeHTML(opt)}" />
+      <span class="option-text"><strong>${labels[i]}.</strong> ${escapeHTML(opt)}</span>
     </label>
   `).join("");
 
   card.innerHTML = `
     <div class="question-number">Câu ${num}</div>
-    <div class="question-text">${q.text}</div>
+    <div class="question-text">${escapeHTML(q.text)}</div>
     <div class="options-list">${optionHTML}</div>
   `;
 
@@ -312,6 +316,10 @@ function renderEssay(q) {
   const card = document.createElement("div");
   card.className = "question-card type-essay";
 
+  function escapeHTML(str) {
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
   let rowsHTML = q.rows.map(row => {
     const cls = row.longInput ? "inline-input long" : "inline-input short";
     const placeholder = row.hint ? row.hint : "?";
@@ -321,9 +329,9 @@ function renderEssay(q) {
     let displayHTML = "";
     if (row.label.includes("...(>/</ =)...")) {
       const parts = row.label.split("...(>/</ =)...");
-      displayHTML = `<span>${parts[0]}</span>${inputHTML}<span>${parts[1]}</span>`;
+      displayHTML = `<span>${escapeHTML(parts[0])}</span> ${inputHTML} <span>${escapeHTML(parts[1])}</span>`;
     } else {
-      displayHTML = `<span>${row.label}</span>\n        ${inputHTML}`;
+      displayHTML = `<span>${escapeHTML(row.label)}</span>\n        ${inputHTML}`;
     }
 
     return `
