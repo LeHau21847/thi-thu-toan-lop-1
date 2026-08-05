@@ -315,11 +315,20 @@ function renderEssay(q) {
   let rowsHTML = q.rows.map(row => {
     const cls = row.longInput ? "inline-input long" : "inline-input short";
     const placeholder = row.hint ? row.hint : "?";
+    const inputHTML = `<input type="text" class="${cls}" id="${row.inputId}"
+               placeholder="${placeholder}" autocomplete="off" spellcheck="false" />`;
+    
+    let displayHTML = "";
+    if (row.label.includes("...(>/</ =)...")) {
+      const parts = row.label.split("...(>/</ =)...");
+      displayHTML = `<span>${parts[0]}</span>${inputHTML}<span>${parts[1]}</span>`;
+    } else {
+      displayHTML = `<span>${row.label}</span>\n        ${inputHTML}`;
+    }
+
     return `
       <div class="essay-row">
-        <span>${row.label}</span>
-        <input type="text" class="${cls}" id="${row.inputId}"
-               placeholder="${placeholder}" autocomplete="off" spellcheck="false" />
+        ${displayHTML}
       </div>
     `;
   }).join("");
