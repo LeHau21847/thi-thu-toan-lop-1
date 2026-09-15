@@ -191,6 +191,94 @@ const EXAM_DATA = {
         ]
       }
     ]
+  },
+  2: {
+    title: "Tuần 2 – Ôn Tập Phép Tính & So Sánh",
+    sections: [
+      {
+        id: "mcq",
+        label: "I. Trắc Nghiệm",
+        icon: "🔢",
+        questions: [
+          {
+            id: "w2_q1", type: "mcq",
+            text: "Các số: 24, 45, 36, 58 được xếp theo thứ tự từ lớn đến bé là:",
+            options: ["58, 45, 36, 24", "24, 36, 45, 58", "58, 36, 45, 24", "45, 58, 36, 24"],
+            answer: "58, 45, 36, 24"
+          },
+          {
+            id: "w2_q2", type: "mcq",
+            text: "Các số: 46, 36, 38, 63 được xếp theo thứ tự từ bé đến lớn là:",
+            options: ["36, 38, 46, 63", "63, 46, 38, 36", "38, 36, 46, 63", "36, 46, 38, 63"],
+            answer: "36, 38, 46, 63"
+          },
+          {
+            id: "w2_q3", type: "mcq",
+            text: "Cho 80 ... 90 - 50. Dấu cần điền là:",
+            options: [">", "<", "=", "+"],
+            answer: ">"
+          },
+          {
+            id: "w2_q4", type: "mcq",
+            text: "Cho 60 ... 80 - 20. Dấu cần điền là:",
+            options: [">", "<", "=", "-"],
+            answer: "="
+          }
+        ]
+      },
+      {
+        id: "essay",
+        label: "II. Bài Toán Tự Luận",
+        icon: "✏️",
+        questions: [
+          {
+            id: "w2_e1", type: "essay", section: "Bài 1: Tính",
+            rows: [
+              { label: "16 + 1 =", inputId: "w2_e1_1", answer: "17" },
+              { label: "18 – 3 =", inputId: "w2_e1_2", answer: "15" },
+              { label: "10 + 1 =", inputId: "w2_e1_3", answer: "11" },
+              { label: "14 + 2 =", inputId: "w2_e1_4", answer: "16" }
+            ]
+          },
+          {
+            id: "w2_e2", type: "essay", section: "Bài 2: Tính",
+            rows: [
+              { label: "12 + 3 =", inputId: "w2_e2_1", answer: "15" },
+              { label: "18 + 1 =", inputId: "w2_e2_2", answer: "19" },
+              { label: "19 – 4 =", inputId: "w2_e2_3", answer: "15" },
+              { label: "13 + 2 =", inputId: "w2_e2_4", answer: "15" }
+            ]
+          },
+          {
+            id: "w2_e5", type: "essay", section: "Bài 5: Tính",
+            rows: [
+              { label: "20 – 10 =", inputId: "w2_e5_1", answer: "10" },
+              { label: "10 + 10 =", inputId: "w2_e5_2", answer: "20" },
+              { label: "10 – 10 =", inputId: "w2_e5_3", answer: "0" },
+              { label: "10 + 20 =", inputId: "w2_e5_4", answer: "30" }
+            ]
+          },
+          {
+            id: "w2_e7", type: "essay", section: "Bài 7: Tính",
+            rows: [
+              { label: "50 – 40 =", inputId: "w2_e7_1", answer: "10" },
+              { label: "30 + 20 =", inputId: "w2_e7_2", answer: "50" },
+              { label: "10 + 40 =", inputId: "w2_e7_3", answer: "50" },
+              { label: "30 – 20 =", inputId: "w2_e7_4", answer: "10" }
+            ]
+          },
+          {
+            id: "w2_e17", type: "essay", section: "Bài 17: Điền dấu >, <, =",
+            rows: [
+              { label: "18  ...(>/</ =)...  12 + 7", inputId: "w2_e17_1", answer: "<" },
+              { label: "90  ...(>/</ =)...  60 + 20", inputId: "w2_e17_2", answer: ">" },
+              { label: "98  ...(>/</ =)...  82 - 52", inputId: "w2_e17_3", answer: ">" },
+              { label: "13 + 3  ...(>/</ =)...  14", inputId: "w2_e17_4", answer: ">" }
+            ]
+          }
+        ]
+      }
+    ]
   }
 };
 
