@@ -250,6 +250,22 @@ const EXAM_DATA = {
             ]
           },
           {
+            id: "w2_e3", type: "essay", section: "Bài 3: Tính",
+            rows: [
+              { label: "17 – 16 =", inputId: "w2_e3_1", answer: "1" },
+              { label: "6 + 12 =", inputId: "w2_e3_2", answer: "18" },
+              { label: "16 – 12 =", inputId: "w2_e3_3", answer: "4" },
+              { label: "13 + 2 =", inputId: "w2_e3_4", answer: "15" }
+            ]
+          },
+          {
+            id: "w2_e4", type: "essay", section: "Bài 4: Tính",
+            rows: [
+              { label: "2 + 14 =", inputId: "w2_e4_1", answer: "16" },
+              { label: "10 – 6 =", inputId: "w2_e4_2", answer: "4" }
+            ]
+          },
+          {
             id: "w2_e5", type: "essay", section: "Bài 5: Tính",
             rows: [
               { label: "20 – 10 =", inputId: "w2_e5_1", answer: "10" },
